@@ -3,9 +3,11 @@
 Open-source model evaluation lab for benchmarking LLMs and decision models across accuracy, latency, tokens and inference cost.
 
 ## Status
+
 Local pilot with Next.js, CSV/XLSX import, model selection, real OpenRouter execution, versioned golden comparison and downloadable results. No PostgreSQL, Supabase or Docker is required. Missing measurements remain **NOT MEASURED YET**.
 
-## Run the foundation
+## Quick start
+
 Node.js 22+ and Git are required. Clone https://github.com/guiritaro19/openrouter-model-eval and install dependencies. The committed pnpm lockfile records the tested dependency versions.
 
 ```powershell
@@ -50,11 +52,13 @@ npm run security:check
 Tests cover CSV/XLSX, leading zeros, duplicate headers/IDs, golden matching and coverage, accuracy with failures, agreement, percentiles, provider usage/cost, decision probabilities, shared semantic inputs and secret scanning.
 
 ## Request inspection
+
 Import collections/openrouter.postman_collection.json. Set the key only in a local secret variable. Run list_openrouter_models and choose current IDs with text input. Choose a text output model for chat; structured output requires compatible supported parameters. Choose a decisions output model for Jev. Model IDs intentionally start empty. POST requests can incur inference costs. For chat usage lookup, copy the real response id to GENERATION_ID. Decisions usage is returned directly in its response; do not assume the chat generation lookup supports it.
 
 The collection is the Phase 0 fallback for Postman Lite MCP, which was not found in the connected tools or local MCP configuration. The production app will never depend on Postman. A later stdio MCP can expose the same six operations via a shared server-side adapter, with schema validation, redaction and no secrets in tool arguments.
 
-## Planned architecture
+## Architecture
+
 ```mermaid
 flowchart TD
   D[Dataset and column mapping] --> E[Experiment engine]
@@ -69,12 +73,15 @@ flowchart TD
   M --> P[Ignored local JSON files]
   P --> U[Comparison dashboard and case inspector]
 ```
+
 The basic workflow above is implemented. LangGraph and Langfuse are future layers. Enum classification is supported; semantic judges, human review, Pareto charts, routing policies and durable resumption are not yet implemented.
 
 ## Security and reproducibility
+
 Env files, local results and private-data are ignored. The server binds to 127.0.0.1, rejects non-local hosts/cross-origin calls and redacts configured credentials in persisted bodies. It has no multi-user authentication: keep it local. The scanner checks the Git index and every reachable commit for common credentials and env files. It cannot recognize every secret or determine whether a dataset is private; manual review remains required. Do not push if the scan fails or review finds personal data. Model pricing is snapshotted per run.
 
 ## Roadmap
+
 0. Foundation, collection, authenticated health and public GitHub repository.
 1. Next.js, local files, CSV/XLSX mapping and experiment context.
 2. Dynamic model selection, generative/decision adapters and one-row validation.
@@ -91,3 +98,9 @@ See docs/phase-0.md for evidence, API references and publication commands.
 ## License
 
 MIT. See LICENSE.
+
+## Documentation and API reference
+
+Use the **Documentation** link in the application header, or open http://127.0.0.1:3000/documentation. The English guide explains the complete workflow and evaluation fundamentals. Swagger UI documents the actual local endpoints; its OpenAPI JSON is at `/api/openapi`.
+
+The experiment request schema is generated from the same Zod configuration validator used by the runner. Starting a run through Swagger makes real, potentially paid OpenRouter calls. Importing golden answers and exporting saved results make no new inference calls. Provider credentials stay in the backend; do not enter them in Swagger. External Swagger validation is disabled and API-reference requests are restricted to this application's origin.
