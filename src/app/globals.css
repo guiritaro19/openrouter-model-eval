@@ -1462,3 +1462,27 @@ select {
 .api-reference .swagger-ui select {
   border-color: var(--control-border);
 }
+/* Swagger version labels must remain legible inside the documentation theme. */
+.documentation .api-reference .swagger-ui .info .title small {
+  display: inline-flex;
+  align-items: center;
+  background: var(--selected);
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  margin-left: 6px;
+  vertical-align: middle;
+  font: 600 12px/1.4 var(--font-body);
+}
+.documentation .api-reference .swagger-ui .info .title small pre {
+  display: inline;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  white-space: normal;
+}
