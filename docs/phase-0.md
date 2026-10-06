@@ -52,3 +52,7 @@ gh repo create openrouter-model-eval --public --source . --remote origin --push 
 
 ## Scope
 No MCP implementation is claimed: the collection is the permitted fallback. No license is chosen yet; choose an open-source license before presenting the repository as an open-source template. Next.js and database setup start in Phase 1. Never label a public catalog check as a successful three-model experiment.
+
+## Current status update
+The public repository has been created and the foundation pushed to https://github.com/guiritaro19/openrouter-model-eval. Authorship is configured. MIT license and the local pilot supersede the setup-only limitations above. The user requested no PostgreSQL or Supabase; the pilot persists local JSON files. See docs/pilot.md for current operation.
+
