@@ -10,3 +10,8 @@ coverage/
 work/
 private-data/
 results/
+
+*.tsbuildinfo
+.next/
+pnpm-debug.log
+

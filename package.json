@@ -10,6 +10,28 @@
   "scripts": {
     "health:openrouter": "node --env-file=.env.local scripts/openrouter-health.mjs",
     "security:check": "node scripts/security-check.mjs",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --import tsx --test tests/*.test.mjs tests/*.test.ts",
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build --webpack",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "lucide-react": "^1.52.0",
+    "next": "^16.3.8",
+    "papaparse": "^5.7.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "read-excel-file": "^9.3.10",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
   }
 }
